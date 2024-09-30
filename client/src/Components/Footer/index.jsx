@@ -8,9 +8,9 @@ import {
   Grid,
   Divider,
 } from "@mui/material";
-import facebookIcon from "./images/Facebook.jpeg";
+import facebookIcon from "./images/Facebook.png";
 import instagramIcon from "./images/insta.png";
-import twitterIcon from "./images/Twitter.jpeg";
+import twitterIcon from "./images/Twitter.png";
 
 const Footer = () => {
   return (

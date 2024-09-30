@@ -25,13 +25,24 @@ export const AuthenticatedUser = async (userData) => {
 
 export const refreshToken = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}/refresh`, {
-      withCredentials: true,
+    const response = await fetch("API_URL_HERE", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("refreshToken")}`, // Assuming you're using a refresh token stored in localStorage
+      },
     });
-    return response.data;
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || "Failed to refresh token");
+    }
+
+    return data; // Ensure this includes the new token
   } catch (error) {
-    console.error("Error during token refresh:", error.message);
-    throw error;
+    console.error("Error during token refresh:", error);
+    throw error; // Rethrow the error for further handling
   }
 };
 

@@ -33,6 +33,7 @@ const Loginform = () => {
       });
       if (data) {
         toast.success("Login Successful!");
+        console.log(data);
         return data;
       } else {
         throw new Error("Invalid credentials");

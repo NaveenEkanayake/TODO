@@ -1,16 +1,17 @@
 const { ObjectId } = require("mongoose").Types;
 const todolist = require("../models/todo.schema");
 const User = require("../models/User.schema.js");
-
 const getTasks = async (req, res) => {
   const userId = req.id; // Get user ID from the token
   let userEmail;
 
   try {
+    // Fetch the user to get their email
     const user = await User.findById(userId, "email");
     if (!user) {
       return res.status(404).json({ message: "User not found." });
     }
+
     userEmail = user.email;
     const tasks = await todolist.find({ user: userId });
     if (tasks.length === 0) {
@@ -18,11 +19,9 @@ const getTasks = async (req, res) => {
         message: `No tasks found for your account (${userEmail}).`,
       });
     }
-
-    // Return tasks with a success message
     res.status(200).json({
       message: `Tasks retrieved successfully for your account (${userEmail}).`,
-      tasks, // Include the retrieved tasks in the response
+      tasks,
     });
   } catch (err) {
     console.error(err.message);
@@ -35,7 +34,7 @@ const getTaskByName = async (req, res) => {
   const { task } = req.params;
 
   try {
-    const taskItem = await todolist.findOne({ task: task, user: userId }); // Filter by user ID
+    const taskItem = await todolist.findOne({ task: task, user: userId });
 
     if (!taskItem) {
       return res

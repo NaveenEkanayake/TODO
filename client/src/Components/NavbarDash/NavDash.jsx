@@ -11,9 +11,8 @@ import {
   Avatar,
   Menu,
   MenuItem,
-  TextField,
 } from "@mui/material";
-import { FiMenu, FiX, FiSearch } from "react-icons/fi";
+import { FiMenu, FiX } from "react-icons/fi";
 import logo from "../Navbar/images/logo.png";
 import { verifyUser } from "../../API/UserAPI";
 import { LogoutReq } from "../../API/UserAPI"; // Correct import for LogoutReq
@@ -27,7 +26,6 @@ const NavDash = () => {
   const [user, setUser] = useState();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -68,15 +66,6 @@ const NavDash = () => {
     }
   };
 
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
-  const handleSearchSubmit = (event) => {
-    event.preventDefault();
-    console.log("Searching for:", searchTerm);
-  };
-
   useEffect(() => {
     verifyUser()
       .then((data) => setUser(data.user))
@@ -99,59 +88,6 @@ const NavDash = () => {
             >
               TODO
             </Typography>
-          </Box>
-
-          {/* Search Bar in the Middle for Desktop */}
-          <Box
-            component="form"
-            onSubmit={handleSearchSubmit}
-            sx={{
-              display: { xs: "none", md: "flex" },
-              alignItems: "center",
-              margin: "0 auto",
-              width: "300px",
-              transition: "width 0.4s ease",
-              "&:hover": {
-                width: "300px", // Expand on hover
-              },
-            }}
-          >
-            <TextField
-              variant="outlined"
-              placeholder="Search task"
-              value={searchTerm}
-              onChange={handleSearchChange}
-              sx={{
-                flex: 1,
-                backgroundColor: "white",
-                borderRadius: "4px 0 0 4px",
-                "& input": {
-                  color: "black",
-                },
-                "& .MuiOutlinedInput-notchedOutline": {
-                  border: "none",
-                },
-                "&:hover .MuiOutlinedInput-notchedOutline": {
-                  border: "none",
-                },
-                "&:focus .MuiOutlinedInput-notchedOutline": {
-                  border: "none",
-                },
-              }}
-            />
-            <IconButton
-              type="submit"
-              sx={{
-                color: "white",
-                backgroundColor: "transparent",
-                borderRadius: "0 4px 4px 0",
-                "&:hover": {
-                  color: "darkred",
-                },
-              }}
-            >
-              <FiSearch />
-            </IconButton>
           </Box>
 
           {/* Hamburger Menu Icon for Mobile */}
@@ -181,54 +117,6 @@ const NavDash = () => {
               >
                 <FiX size={24} />
               </IconButton>
-
-              {/* Search Bar in the Drawer for Mobile */}
-              <Box
-                component="form"
-                onSubmit={handleSearchSubmit}
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginTop: 2,
-                }}
-              >
-                <TextField
-                  variant="outlined"
-                  placeholder="Search task"
-                  value={searchTerm}
-                  onChange={handleSearchChange}
-                  sx={{
-                    flex: 1,
-                    backgroundColor: "white",
-                    borderRadius: "4px 0 0 4px",
-                    "& input": {
-                      color: "black",
-                    },
-                    "& .MuiOutlinedInput-notchedOutline": {
-                      border: "none",
-                    },
-                    "&:hover .MuiOutlinedInput-notchedOutline": {
-                      border: "none",
-                    },
-                    "&:focus .MuiOutlinedInput-notchedOutline": {
-                      border: "none",
-                    },
-                  }}
-                />
-                <IconButton
-                  type="submit"
-                  sx={{
-                    color: "white",
-                    backgroundColor: "transparent",
-                    borderRadius: "0 4px 4px 0",
-                    "&:hover": {
-                      color: "darkred",
-                    },
-                  }}
-                >
-                  <FiSearch />
-                </IconButton>
-              </Box>
 
               <Box
                 sx={{

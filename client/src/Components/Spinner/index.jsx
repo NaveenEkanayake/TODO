@@ -1,7 +1,7 @@
 import React from "react";
-import { CircularProgress, Box } from "@mui/material";
+import { Box } from "@mui/material";
 
-const Spinner = () => {
+const DotSpinner = () => {
   return (
     <Box
       sx={{
@@ -12,9 +12,13 @@ const Spinner = () => {
         width: "100%",
       }}
     >
-      <CircularProgress />
+      <div className="flex space-x-2">
+        <div className="w-3 h-3 bg-white rounded-full animate-bounce delay-200"></div>
+        <div className="w-3 h-3 bg-white rounded-full animate-bounce delay-300"></div>
+        <div className="w-3 h-3 bg-white rounded-full animate-bounce delay-400"></div>
+      </div>
     </Box>
   );
 };
 
-export default Spinner;
+export default DotSpinner;
