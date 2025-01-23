@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/server.js"
+    }
+  ],
+  "env": {
+    "CLIENT_PORT": "https://your-vercel-app.vercel.app", // Replace with your Vercel frontend URL
+    "NODE_ENV": "production"
+  }
+}
