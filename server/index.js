@@ -22,6 +22,10 @@ app.use(
     credentials: true,
   })
 );
+
+app.get("/",(req,res) =>{
+  res.json("Hello there !!!");
+})
 app.use(express.json());
 app.use(cookieParser());
 //routes middleware - in order to use the routes
