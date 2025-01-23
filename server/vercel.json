@@ -2,18 +2,20 @@
   "version": 2,
   "builds": [
     {
-      "src": "server.js",
+      "src": "index.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/server.js"
+      "dest": "/index.js"
     }
   ],
   "env": {
-    "CLIENT_PORT": "https://your-vercel-app.vercel.app", // Replace with your Vercel frontend URL
-    "NODE_ENV": "production"
+    "Mongo_URL": "mongodb+srv://nekanayake789:MtxfS6heycAHZxPu@todolist.nbs5f.mongodb.net/?retryWrites=true&w=majority&appName=todolist",
+    "PORT": "3000",
+    "CLIENT_PORT": "http://localhost:5173",
+    "JWT_SECRET_KEY": "6e3fb7c69d4c4ec5a1fae4fbdcad1a8d57c73b8efeb2c4c6aab4ed7c5e5680a1"
   }
 }
